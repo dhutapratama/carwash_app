@@ -5,9 +5,7 @@ class Home extends CI_Controller {
 	var $message = false;
 
 	public function index () {
-		$data['total_startups'] = $this->m_subscriber_startups->get_total_subscriber_startups();
-		$data['total_investors'] = $this->m_subscriber_investors->get_total_subscriber_investors();
-		$this->load->view('home/landingPage', $data);
+		echo 'Welcome Bro!';
 	}
 
 	public function concept ($feedback = false) {

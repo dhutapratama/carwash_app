@@ -7,7 +7,7 @@ class MY_Session extends CI_Session {
 		$ip_address = $_SERVER['REMOTE_ADDR'];
 		$time		= strtotime('-25 seconds');
 		$database 	= $this->CI->db->select('*')
-					->from('login_session')
+					->from('login_sessions')
 					->where('ip_address', $ip_address)
 					->where('last_activity >=', $time)
 					->get()->num_rows();
