@@ -10,15 +10,15 @@ if ($_SERVER['HTTP_HOST'] == 'carwash.app'
 	$system_path 		= 'carwash_system';
 
 	switch ($_SERVER['HTTP_HOST']) {
-		case 'api.carwash.com':
+		case 'api.carwash.app':
 			$application_folder = 'app_api';
 			break;
 
-		case 'admin.carwash.com':
+		case 'admin.carwash.app':
 			$application_folder = 'app_admin';
 			break;
 
-		case 'agen.carwash.com':
+		case 'agen.carwash.app':
 			$application_folder = 'app_agen';
 			break;
 		

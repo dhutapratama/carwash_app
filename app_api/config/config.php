@@ -1,9 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-if ($_SERVER['HTTP_HOST'] == 'stocknbar.com' OR $_SERVER['HTTP_HOST'] == 'www.stocknbar.com') {
-	$config['base_url'] = 'https://stocknbar.com';
+if ($_SERVER['HTTP_HOST'] == 'americanecocarwash.com' OR $_SERVER['HTTP_HOST'] == 'www.americanecocarwash.com') {
+	$config['base_url'] = 'https://americanecocarwash.com';
 } else {
-	$config['base_url'] = 'http://stocknbar.app';
+	$config['base_url'] = 'http://americanecocarwash.app';
 }
 
 $config['index_page'] 			= '';
