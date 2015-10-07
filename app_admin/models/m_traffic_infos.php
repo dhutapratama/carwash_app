@@ -17,7 +17,7 @@ class M_traffic_infos extends CI_Model{
 					->from('traffic_infos')
 					->where('id', $id)
 					->get();
-
+ 
 		if ($database->num_rows() > 0) {
 			$database = $database->result();
 			return $database[0];

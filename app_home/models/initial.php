@@ -34,13 +34,11 @@ class Initial extends CI_Model {
 			$data['hacking_type']	= 'flooding_post';
 			$data['resolving_type']	= 'ban_ip';
 			$this->m_hacked_logs->insert_hacked_logs($data);
-			$this->m_subscriber_investors->delete_subscriber_investors_by_ip($data['ip_address']);
-			$this->m_subscriber_startups->delete_subscriber_startups_by_ip($data['ip_address']);
 			echo 'Your ip has been blocked because too much requesting session in one time.';
 			exit();
 		}
 
-		if ($_SERVER['HTTP_HOST'] == 'stocknbar.com') {
+		if ($_SERVER['HTTP_HOST'] == 'americanecocarwash.com') {
 
 		// Get regional by ip send to db and for language
 			$geolocation 	= $this->traffic();
@@ -59,7 +57,7 @@ class Initial extends CI_Model {
 		// Overide data language
 		$lang_list		= $this->config->item('lang_list');
 		$lang_code		= $lang_list[$this->session->userdata('lang')];
-		$this->lang->load('stocknbar', $lang_code);
+		$this->lang->load('carwash', $lang_code);
 
 
 		//$this->output->enable_profiler(TRUE);
@@ -133,8 +131,8 @@ class Initial extends CI_Model {
 
 	// Analisa for traffic based on geolocation
 	public function traffic(){
-		if ($_SERVER['HTTP_HOST'] == 'stocknbar.com') {
-			$get_geolocation = $this->stocknbar->geolocation();
+		if ($_SERVER['HTTP_HOST'] == 'americanecocarwash.com') {
+			$get_geolocation = $this->carwash->geolocation();
 
 			$data['ip_address']		= $get_geolocation->ipAddress;
 			$data['country_code']	= $get_geolocation->countryCode;
@@ -149,6 +147,14 @@ class Initial extends CI_Model {
 
 			$this->m_traffic_infos->insert_traffic_infos($data);
 			return $get_geolocation;
+		}
+	}
+
+	public function is_post() {
+		if ($_SERVER['REQUEST_METHOD'] != "POST") {
+			redirect();
+		} else {
+			return TRUE;
 		}
 	}
 }

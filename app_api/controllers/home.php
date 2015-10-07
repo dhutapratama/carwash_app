@@ -8,12 +8,13 @@ class Home extends CI_Controller {
 	
 
 	public function index () {
-		echo 'We will redirect you after 0.9321564564945 second';
+		//redirect();
+		echo "redirect";
 	}
 
 	// POST token?client_id=...&client_secret=...&code=...&grant_type=authorization_code
 	public function token () {
-		$this->initial->is_post();
+		//$this->initial->is_post();
 
 		$client_id 		= $this->input->post('client_id');
 		$client_secret	= $this->input->post('client_secret');
