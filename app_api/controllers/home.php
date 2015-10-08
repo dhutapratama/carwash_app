@@ -20,7 +20,5 @@ class Home extends CI_Controller {
 		$client_secret	= $this->input->post('client_secret');
 		$code 			= $this->input->post('code');
 		$grant_type 	= $this->input->post('grant_type');
-
-		$this->m_oauth_clients->client;
 	}
 }

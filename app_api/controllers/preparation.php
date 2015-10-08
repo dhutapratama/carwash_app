@@ -5,11 +5,11 @@ class Preparation extends CI_Controller {
 	*	Menggunakan api angel.co untuk menyerap data startup.
 	*/
 
-	var $client_id			= '7480179705459c2575661519150148733a8c73bfa8ff94fd';
+	var $client_id		= '7480179705459c2575661519150148733a8c73bfa8ff94fd';
 	var $client_secret	= '9b3ffd81faaa8726dc31ac336e55a508eb74e58c5ad9e241';
-	var $code						= '';
+	var $code			= '';
 	var $access_token 	= 'b1051fc55d581e6b0051d004f78e78fac578821c6e39c4b1';
-	var $request_url		= 'https://angel.co/api/oauth/token';
+	var $request_url	= 'https://angel.co/api/oauth/token';
 
 	public function index () {
 		$total_startups = $this->m_configuration->get_configuration()[0]->startups_angelist_counter;

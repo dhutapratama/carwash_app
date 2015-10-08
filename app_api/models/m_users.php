@@ -79,4 +79,36 @@ class M_users extends CI_Model{
 		$database = $this->db->count_all('users');
 		return $database;
 	}
+
+	// Retrieve data from table users by username
+	public function get_users_by_username ($username = '') {
+
+		$database = $this->db->select('*')
+					->from('users')
+					->where('username', $username)
+					->get();
+
+		if ($database->num_rows() > 0) {
+			$database = $database->result();
+			return $database[0];
+		} else {
+			return false;
+		}
+	}
+
+	// Retrieve data from table users by username and password
+	public function check_users_by_username_password ($username = '', $password = '') {
+
+		$database = $this->db->select('*')
+					->from('users')
+					->where('username', $username)
+					->where('password', md5($password))
+					->get();
+
+		if ($database->num_rows() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

@@ -152,9 +152,14 @@ class Initial extends CI_Model {
 
 	public function is_post() {
 		if ($_SERVER['REQUEST_METHOD'] != "POST") {
-			redirect();
+			$output['error']				= true;
+			$output['error_code']			= 404;
+			$output['message']				= "Error request oauth format";
+
+			echo json_encode($output);
 		} else {
 			return TRUE;
 		}
+		exit();
 	}
 }
