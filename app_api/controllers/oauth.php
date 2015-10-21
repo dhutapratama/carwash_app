@@ -8,7 +8,12 @@ class Oauth extends CI_Controller {
 	
 
 	public function index () {
-		echo json_encode("Request Error 404");
+		$output['error']				= true;
+		$output['error_code']			= 404;
+		$output['message']				= "Request Error";
+
+		$output['data'] = $output;
+		$this->load->view('parse_json', $output);
 	}
 
 	// POST token?client_id=...&client_secret=...&code=...&grant_type=authorization_code
@@ -42,12 +47,14 @@ class Oauth extends CI_Controller {
 		}
 
 		if ($authorization) {
+			$output['error']			= false;
 			$output['access_token']		= $this->oauthlib->hashcode();
 			$output['expires_in']		= 999999;
 			$output['token_type']		= "bearer";
 			$output['scope']			= null;
 
-			echo json_encode($output);
+			$output['data'] = $output;
+			$this->load->view('parse_json', $output);
 
 			$data['access_token']		= $output['access_token'];
 			$data['client_id']			= $client_id;
@@ -61,7 +68,8 @@ class Oauth extends CI_Controller {
 			$output['error_code']			= 404;
 			$output['message']				= $message;
 
-			echo json_encode($output);
+			$output['data'] = $output;
+			$this->load->view('parse_json', $output);
 		}
 	}
 
@@ -73,14 +81,14 @@ class Oauth extends CI_Controller {
 		$password		= $this->input->post('password');
 		$client_id		= $this->input->post('client_id');
 
-		$users_data		= $this->m_users->get_users_by_username($username);
+		$members_data		= $this->m_members->get_members_by_username($username);
 
 		$logged			= false;
 		$apps_available	= false;
 
-		if ($users_data) {
-			if ($users_data->is_verified) {
-				if ($this->m_users->check_users_by_username_password($username, $password)) {
+		if ($members_data) {
+			if ($members_data->is_verified) {
+				if ($this->m_members->check_members_by_username_password($username, $password)) {
 						$logged = true;
 				} else {
 					$message = "Wrong Password";
@@ -105,21 +113,22 @@ class Oauth extends CI_Controller {
 
 			$data['authorization_code']	= $output['authorization_code'];
 			$data['client_id']			= $client_id;
-			$data['user_id']			= $users_data->id;
+			$data['user_id']			= $members_data->id;
 			$data['redirect_uri']		= "mobile";
 			$data['expires']			= date("Y-m-d H:i:s", time() + 600);
 			$data['scope']				= "default";
 
 			$this->m_oauth_authorization_codes->insert_oauth_authorization_codes($data);
 
-			echo json_encode($output);
+			$output['data'] = $output;
+			$this->load->view('parse_json', $output);
 		} else {
 			$output['error']				= true;
 			$output['error_code']			= 404;
 			$output['message']				= $message;
 
-			echo json_encode($output);
+			$output['data'] = $output;
+			$this->load->view('parse_json', $output);
 		}
-
 	}
 }

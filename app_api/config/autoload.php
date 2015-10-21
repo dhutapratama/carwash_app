@@ -10,8 +10,11 @@ $autoload['model'] 		= array(
 							'm_traffic_infos',
 							'initial',
 
-							'm_users',
+							'm_members',
 							'm_oauth_clients',
 							'm_oauth_authorization_codes',
-							'm_oauth_access_tokens'
+							'm_oauth_access_tokens',
+							'm_public_info',
+							'm_public_news',
+							'm_price_lists'
 						);

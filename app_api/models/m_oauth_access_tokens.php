@@ -12,7 +12,6 @@ class M_oauth_access_tokens extends CI_Model{
 
 	// Retrieve data from table oauth_access_tokens by access_token
 	public function get_oauth_access_tokens_by_access_token ($access_token = '') {
-
 		$database = $this->db->select('*')
 					->from('oauth_access_tokens')
 					->where('access_token', $access_token)

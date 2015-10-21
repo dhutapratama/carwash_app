@@ -10,21 +10,23 @@ if ($_SERVER['HTTP_HOST'] == 'carwash.app'
 	$config['static_url'] = 'http://static.carwash.app';
 	$config['simple_url'] = 'carwash.app';
 	
-} elseif ($_SERVER['HTTP_HOST'] == 'americanecocarwash.com'
-	OR $_SERVER['HTTP_HOST'] == 'www.americanecocarwash.com'
-	OR $_SERVER['HTTP_HOST'] == 'api.americanecocarwash.com'
-	OR $_SERVER['HTTP_HOST'] == 'admin.americanecocarwash.com'
-	OR $_SERVER['HTTP_HOST'] == 'agen.americanecocarwash.com') {
+} elseif ($_SERVER['HTTP_HOST'] == 'gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'www.gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'api.gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'admin.gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'agen.gogreencarwash.id') {
 
-	$config['static_url'] = 'https://raw.githack.com/dhutapratama/stocknbar_app/static';
-	$config['simple_url'] = 'americanecocarwash.com';
+	$config['static_url'] = 'http://static.gogreencarwash.id';
+	$config['simple_url'] = 'gogreencarwash.id';
 } else {
 	$config['static_url'] = 'http://localhost/static';
 	$config['simple_url'] = 'localhost';
 }
 
 $config['app_version'] 	= '0.0.1 - 07 Oktober 2015';
-$config['app_name'] 	= 'Gogreen Carwash';
+$config['app_name'] 	= 'Go Green Carwash';
+$config['client_id']		= "2d48ad81ef13471a99dccbf57981a27c";
+$config['client_secret']	= "4d3e131d2244763fec17955c4fb93d94";
 
 $config['legal_name'] 	= 'PT. Raja Asia Pasifik';
 $config['legal_number'] = '-';

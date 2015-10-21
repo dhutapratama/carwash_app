@@ -61,60 +61,6 @@ class Initial extends CI_Model {
 
 
 		//$this->output->enable_profiler(TRUE);
-/*
-		$user_type = $this->session->userdata('user_type');
-
-		if ($this->uri->segment(1) != $user_type) {
-
-			switch ($user_type) {
-				case '':
-
-					switch ($this->uri->segment(1)) {
-						case '':
-							break;
-
-						case 'home':
-							if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-								# Jika user sedang benar2 login
-							} else {
-								redirect();
-							}
-							break;
-
-						case 'admin':
-							$data['message'] = 'Anda harus login untuk mengakses halaman ini';
-							$data['message_type'] = 'danger';
-							$this->session->set_flashdata($data);
-							redirect();
-							break;
-
-						case 'siswa':
-							$data['message'] = 'Anda harus login untuk mengakses halaman ini';
-							$data['message_type'] = 'danger';
-							$this->session->set_flashdata($data);
-							redirect();
-							break;
-
-						default:
-
-							break;
-					}
-
-					break;
-
-				default:
-					switch ($this->uri->segment(2)) {
-						case 'logout':
-							# code...
-							break;
-
-						default:
-							redirect($user_type);
-							break;
-						}
-				break;
-			}
-		} */
 	}
 
 	// Detect flooding on session, if detected it will return true

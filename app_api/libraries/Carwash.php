@@ -29,8 +29,9 @@ class Carwash {
 		return json_decode($result);
 	}
 
-	function userdata($access_token) {
+	function userdata($access_token = '') {
 		$CI =& get_instance();
+
 		return $CI->m_oauth_access_tokens->get_oauth_access_tokens_by_access_token($access_token);
 	}
 }

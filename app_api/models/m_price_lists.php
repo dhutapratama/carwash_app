@@ -1,20 +1,20 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class M_price extends CI_Model{
+class M_price_lists extends CI_Model{
 
-	// Retrieve all data from table price
-	public function get_price () {
+	// Retrieve all data from table price_lists
+	public function get_price_lists () {
 		$database = $this->db->select('*')
-					->from('price')
+					->from('price_lists')
 					->get()->result();
 		return $database;
 	}
 
-	// Retrieve data from table price by id
-	public function get_price_by_id ($id = '') {
+	// Retrieve data from table price_lists by id
+	public function get_price_lists_by_id ($id = '') {
 
 		$database = $this->db->select('*')
-					->from('price')
+					->from('price_lists')
 					->where('id', $id)
 					->get();
 
@@ -26,8 +26,8 @@ class M_price extends CI_Model{
 		}
 	}
 
-	// Insert data to table price
-	public function insert_price ($data = array()) {
+	// Insert data to table price_lists
+	public function insert_price_lists ($data = array()) {
 		/*
 			$data['name']				= ;
 			$data['price']				= ;
@@ -41,16 +41,16 @@ class M_price extends CI_Model{
 			$data['creator_id']			= ;
 		*/
 
-		$database = $this->db->insert('price', $data);
+		$database = $this->db->insert('price_lists', $data);
 		return $database;
 	}
 
-	// Update data to table price by id
-	public function update_price ($id = '', $data = array()) {
+	// Update data to table price_lists by id
+	public function update_price_lists ($id = '', $data = array()) {
 		/*
 			$data['name']				= ;
-			$data['price']				= ;
-			$data['price_type_id']		= ;
+			$data['price_lists']				= ;
+			$data['price_lists_type_id']		= ;
 			$data['month']				= ;
 			$data['day']				= ;
 			$data['credit']				= ;
@@ -61,14 +61,14 @@ class M_price extends CI_Model{
 		*/
 
 		$this->db->where('id', $id);
-		$database = $this->db->update('price', $data);
+		$database = $this->db->update('price_lists', $data);
 		return $database;
 	}
 
-	// Delete data in table price by id
-	public function delete_price_by_id ($id = '') {
+	// Delete data in table price_lists by id
+	public function delete_price_lists_by_id ($id = '') {
 		$this->db->where('id', $id);
-		$database = $this->db->delete('price');
+		$database = $this->db->delete('price_lists');
 		return $database;
 	}
 
@@ -76,9 +76,9 @@ class M_price extends CI_Model{
 	// Custom Function
 	// ------------------------------
 
-	// Get total data in price
-	public function get_total_price () {
-		$database = $this->db->count_all('price');
+	// Get total data in price_lists
+	public function get_total_price_lists () {
+		$database = $this->db->count_all('price_lists');
 		return $database;
 	}
 }

@@ -1,4 +1,5 @@
 <?php
+
 if ($_SERVER['HTTP_HOST'] == 'carwash.app'
 	OR $_SERVER['HTTP_HOST'] == 'www.carwash.app'
 	OR $_SERVER['HTTP_HOST'] == 'api.carwash.app'
@@ -27,26 +28,26 @@ if ($_SERVER['HTTP_HOST'] == 'carwash.app'
 			break;
 	}
 
-} elseif ($_SERVER['HTTP_HOST'] == 'americanecocarwash.app'
-	OR $_SERVER['HTTP_HOST'] == 'www.americanecocarwash.app'
-	OR $_SERVER['HTTP_HOST'] == 'api.americanecocarwash.app'
-	OR $_SERVER['HTTP_HOST'] == 'admin.americanecocarwash.app'
-	OR $_SERVER['HTTP_HOST'] == 'agen.americanecocarwash.app') {
+} elseif ($_SERVER['HTTP_HOST'] == 'gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'www.gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'api.gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'admin.gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'agen.gogreencarwash.id') {
 
 	date_default_timezone_set("Asia/Jakarta");
 	define('ENVIRONMENT', 'production');
 	$system_path 		= 'carwash_system';
 
 	switch ($_SERVER['HTTP_HOST']) {
-		case 'api.americanecocarwash.com':
+		case 'api.gogreencarwash.id':
 			$application_folder = 'app_api';
 			break;
 
-		case 'admin.americanecocarwash.com':
+		case 'manage.gogreencarwash.id':
 			$application_folder = 'app_admin';
 			break;
 
-		case 'agen.americanecocarwash.com':
+		case 'agen.gogreencarwash.id':
 			$application_folder = 'app_agen';
 			break;
 		

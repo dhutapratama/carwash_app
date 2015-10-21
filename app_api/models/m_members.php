@@ -1,20 +1,20 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class M_users extends CI_Model{
+class M_members extends CI_Model{
 
-	// Retrieve all data from table users
-	public function get_users () {
+	// Retrieve all data from table members
+	public function get_members () {
 		$database = $this->db->select('*')
-					->from('users')
+					->from('members')
 					->get()->result();
 		return $database;
 	}
 
-	// Retrieve data from table users by id
-	public function get_users_by_id ($id = '') {
+	// Retrieve data from table members by id
+	public function get_members_by_id ($id = '') {
 
 		$database = $this->db->select('*')
-					->from('users')
+					->from('members')
 					->where('id', $id)
 					->get();
 
@@ -26,8 +26,8 @@ class M_users extends CI_Model{
 		}
 	}
 
-	// Insert data to table users
-	public function insert_users ($data = array()) {
+	// Insert data to table members
+	public function insert_members ($data = array()) {
 		/*
 			$data['username']			= ;
 			$data['password']			= ;
@@ -40,12 +40,12 @@ class M_users extends CI_Model{
 			$data['is_verified']		= ;
 		*/
 
-		$database = $this->db->insert('users', $data);
+		$database = $this->db->insert('members', $data);
 		return $database;
 	}
 
-	// Update data to table users by id
-	public function update_users ($id = '', $data = array()) {
+	// Update data to table members by id
+	public function update_members ($id = '', $data = array()) {
 		/*
 			$data['username']			= ;
 			$data['password']			= ;
@@ -59,14 +59,14 @@ class M_users extends CI_Model{
 		*/
 
 		$this->db->where('id', $id);
-		$database = $this->db->update('users', $data);
+		$database = $this->db->update('members', $data);
 		return $database;
 	}
 
-	// Delete data in table users by id
-	public function delete_users_by_id ($id = '') {
+	// Delete data in table members by id
+	public function delete_members_by_id ($id = '') {
 		$this->db->where('id', $id);
-		$database = $this->db->delete('users');
+		$database = $this->db->delete('members');
 		return $database;
 	}
 
@@ -74,17 +74,17 @@ class M_users extends CI_Model{
 	// Custom Function
 	// ------------------------------
 
-	// Get total data in users
-	public function get_total_users () {
-		$database = $this->db->count_all('users');
+	// Get total data in members
+	public function get_total_members () {
+		$database = $this->db->count_all('members');
 		return $database;
 	}
 
-	// Retrieve data from table users by username
-	public function get_users_by_username ($username = '') {
+	// Retrieve data from table members by username
+	public function get_members_by_username ($username = '') {
 
 		$database = $this->db->select('*')
-					->from('users')
+					->from('members')
 					->where('username', $username)
 					->get();
 
@@ -96,11 +96,11 @@ class M_users extends CI_Model{
 		}
 	}
 
-	// Retrieve data from table users by username and password
-	public function check_users_by_username_password ($username = '', $password = '') {
+	// Retrieve data from table members by username and password
+	public function check_members_by_username_password ($username = '', $password = '') {
 
 		$database = $this->db->select('*')
-					->from('users')
+					->from('members')
 					->where('username', $username)
 					->where('password', md5($password))
 					->get();
@@ -112,11 +112,11 @@ class M_users extends CI_Model{
 		}
 	}
 
-	// Retrieve public data from table users by id
-	public function get_users_public_by_id ($id = '') {
+	// Retrieve public data from table members by id
+	public function get_members_public_by_id ($id = '') {
 
 		$database = $this->db->select('*')
-					->from('users')
+					->from('members')
 					->where('id', $id)
 					->get();
 
