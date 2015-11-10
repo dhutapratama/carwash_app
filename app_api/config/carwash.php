@@ -7,8 +7,9 @@ if ($_SERVER['HTTP_HOST'] == 'carwash.app'
 	OR $_SERVER['HTTP_HOST'] == 'admin.carwash.app'
 	OR $_SERVER['HTTP_HOST'] == 'agen.carwash.app') {
 
-	$config['static_url'] = 'http://static.carwash.app';
+	$config['static_url'] = 'http://static.carwash.app/';
 	$config['simple_url'] = 'carwash.app';
+	$config['upload_path']= '../static_carwash_app/';
 	
 } elseif ($_SERVER['HTTP_HOST'] == 'gogreencarwash.id'
 	OR $_SERVER['HTTP_HOST'] == 'www.gogreencarwash.id'
@@ -16,11 +17,13 @@ if ($_SERVER['HTTP_HOST'] == 'carwash.app'
 	OR $_SERVER['HTTP_HOST'] == 'admin.gogreencarwash.id'
 	OR $_SERVER['HTTP_HOST'] == 'agen.gogreencarwash.id') {
 
-	$config['static_url'] = 'http://static.gogreencarwash.id';
+	$config['static_url'] = 'http://static.gogreencarwash.id/';
 	$config['simple_url'] = 'gogreencarwash.id';
+	$config['upload_path']= '../static/';
 } else {
-	$config['static_url'] = 'http://localhost/static';
+	$config['static_url'] = 'http://localhost/static/';
 	$config['simple_url'] = 'localhost';
+	$config['upload_path']= '../static/';
 }
 
 $config['app_version'] 	= '0.0.1 - 07 Oktober 2015';

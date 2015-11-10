@@ -16,7 +16,8 @@ class Public_access extends CI_Controller {
 		$access_tokens_data		= $this->m_oauth_access_tokens->get_oauth_access_tokens_by_access_token($access_token);
 
 		if ($access_tokens_data) {
-			$members_data	= $this->m_members->get_members_by_id($access_tokens_data->user_id);
+			$members_data		= $this->m_members->get_members_by_id($access_tokens_data->user_id);
+			$member_cars_data	= $this->m_member_cars->get_member_cars_by_member_id($access_tokens_data->user_id);
 
 			$response['error']	= false;
 			$response['user_data']['full_name']		= $members_data->full_name;
@@ -27,9 +28,22 @@ class Public_access extends CI_Controller {
 			$response['user_data']['is_verified']	= $members_data->is_verified;
 			$response['user_data']['referral_code']	= $members_data->referral_code;
 
-			$response['info']		= $this->info();
-			$response['price_list']	= $this->price_list();
-			$response['news']		= $this->news();
+			if ($member_cars_data) {
+				$response['member_cars']	= "";
+			
+				foreach ($member_cars_data as $value) {
+					$response['member_cars'] = $value->car_number;
+				}
+			} else {
+				$response['member_cars']	= "No Cars";
+			}
+
+			$response['info']		= $this->_info();
+			$response['price_list']	= $this->_price_list();
+			$response['news']		= $this->_news();
+
+			$response['last_cleaning']		= $this->_last_cleaning($access_tokens_data->user_id);
+			$response['next_cleaning']		= $this->_next_cleaning($access_tokens_data->user_id);
 
 			$response['data'] = $response;
 			$this->load->view('parse_json', $response);
@@ -43,10 +57,9 @@ class Public_access extends CI_Controller {
 		}
 	}
 
-	private function info() {
-		$output['error']	= false;
-		$data				= $this->m_public_info->get_public_info();
-		$html				= "";
+	private function _info() {
+		$data	= $this->m_public_info->get_public_info();
+		$html	= "";
 
 		foreach ($data as $value) {
 			$html .= '<a href="https://www.youtube.com/watch?v='.$value->video_id.'" class="link-feed">'."\n";
@@ -70,10 +83,9 @@ class Public_access extends CI_Controller {
 		return $html;
 	}
 
-	private function price_list() {
-		$output['error']	= false;
-		$data				= $this->m_price_lists->get_price_lists();
-		$html				= "";
+	private function _price_list() {
+		$data	= $this->m_price_lists->get_price_lists();
+		$html	= "";
 
 		foreach ($data as $value) {
 			$html .= '<ul data-role="listview" data-inset="true" class="deposit-unlisted">'."\n";
@@ -90,10 +102,9 @@ class Public_access extends CI_Controller {
 		return $html;
 	}
 
-	private function news() {
-		$output['error']	= false;
-		$data		= $this->m_public_news->get_public_news();
-		$html				= "";
+	private function _news() {
+		$data	= $this->m_public_news->get_public_news();
+		$html	= "";
 
 		foreach ($data as $value) {
 			$html .= '<a href="'.$value->url.'" class="link-feed">'."\n";
@@ -113,6 +124,57 @@ class Public_access extends CI_Controller {
 			$html .= '<div class="feed-link">https://www.youtube.com/watch?v='.$value->url.'</div>'."\n";
 			$html .= '</a>'."\n";
 		}
+		return $html;
+	}
+
+	private function _last_cleaning($member_id = 0) {
+		$data	= $this->m_request_taken->get_request_taken_by_now($member_id);
+		$html	= "";
+
+		if ($data) {
+			$user_data			= $this->m_users->get_users_by_id($data->cleaning_user_id);
+			$member_car_data	= $this->m_member_cars->get_member_cars_by_id($data->member_car_id);
+
+			$html .= '<li><a href="#cleaning_detail-page" data-transition="slide" class="home-schedule-link">'."\n";
+			$html .= '<img src="'.$user_data->small_picture_url.'" class="home-cs-image">'."\n";
+			$html .= '<h2 class="home-schedule-date">'.$data->onboard_date.'</h2>'."\n";
+			$html .= '<p class="home-schedule-address">'.$data->location_detail.'</p>'."\n";
+			$html .= '<p class="home-schedule-carnumber">'.$member_car_data->car_number.'</p></a>'."\n";
+			$html .= '</li>'."\n";
+		} else {
+			$html .= '<li><a href="#cleaning_detail-page" data-transition="slide" class="home-schedule-link">'."\n";
+			$html .= '<img src="http://static.gogreencarwash.id/profile_pictures/default.jpg" class="home-cs-image">'."\n";
+			$html .= '<h2 class="home-schedule-date">Waiting next schedule</h2>'."\n";
+			$html .= '<p class="home-schedule-address">-</p>'."\n";
+			$html .= '<p class="home-schedule-carnumber">-</p></a>'."\n";
+			$html .= '</li>'."\n";
+		}
+
+		return $html;
+	}
+
+	private function _next_cleaning($member_id = 0) {
+		$data	= $this->m_request_lists->get_request_lists_by_now($member_id);
+		$html	= "";
+
+		if ($data) {
+			$member_car_data	= $this->m_member_cars->get_member_cars_by_id($data->member_car_id);
+
+			$html .= '<li><a href="#cleaning_detail2-page" data-transition="slide" class="home-schedule-link">'."\n";
+			$html .= '<img src="http://static.gogreencarwash.id/profile_pictures/default.jpg" class="home-cs-image">'."\n";
+			$html .= '<h2 class="home-schedule-date">'.$data->request_date.'</h2>'."\n";
+			$html .= '<p class="home-schedule-address">'.$data->location_detail.'</p>'."\n";
+			$html .= '<p class="home-schedule-carnumber">'.$member_car_data->car_number.'</p></a>'."\n";
+			$html .= '</li>'."\n";
+		} else {
+			$html .= '<li><a href="#" data-transition="slide" class="home-schedule-link">'."\n";
+			$html .= '<img src="http://static.gogreencarwash.id/profile_pictures/default.jpg" class="home-cs-image">'."\n";
+			$html .= '<h2 class="home-schedule-date">Rescheduling in Process</h2>'."\n";
+			$html .= '<p class="home-schedule-address">Registered on subscription</p>'."\n";
+			$html .= '<p class="home-schedule-carnumber">-</p></a>'."\n";
+			$html .= '</li>'."\n";
+		}
+
 		return $html;
 	}
 

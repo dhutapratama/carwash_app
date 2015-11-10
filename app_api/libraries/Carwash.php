@@ -34,4 +34,11 @@ class Carwash {
 
 		return $CI->m_oauth_access_tokens->get_oauth_access_tokens_by_access_token($access_token);
 	}
+
+	function save_base64_image($content, $filename) {
+		$CI =& get_instance();
+		$upload_path = $CI->config->item('upload_path');
+
+		file_put_contents($upload_path.$filename, $content);
+	}
 }
