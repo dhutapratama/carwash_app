@@ -10,12 +10,12 @@ class M_oauth_authorization_codes extends CI_Model{
 		return $database;
 	}
 
-	// Retrieve data from table oauth_authorization_codes by id
-	public function get_oauth_authorization_codes_by_id ($id = '') {
+	// Retrieve data from table oauth_authorization_codes by authorization_code
+	public function get_oauth_authorization_codes_by_authorization_code ($authorization_code = '') {
 
 		$database = $this->db->select('*')
 					->from('oauth_authorization_codes')
-					->where('id', $id)
+					->where('authorization_code', $authorization_code)
 					->get();
 
 		if ($database->num_rows() > 0) {
@@ -35,15 +35,14 @@ class M_oauth_authorization_codes extends CI_Model{
 			$data['redirect_uri']		= ;
 			$data['expires']			= ;
 			$data['scope']				= ;
-			$data['id_token']			= ;
 		*/
 
 		$database = $this->db->insert('oauth_authorization_codes', $data);
 		return $database;
 	}
 
-	// Update data to table oauth_authorization_codes by id
-	public function update_oauth_authorization_codes ($id = '', $data = array()) {
+	// Update data to table oauth_authorization_codes by authorization_code
+	public function update_oauth_authorization_codes ($authorization_code = '', $data = array()) {
 		/*
 			$data['authorization_code']	= ;
 			$data['client_id']			= ;
@@ -51,17 +50,16 @@ class M_oauth_authorization_codes extends CI_Model{
 			$data['redirect_uri']		= ;
 			$data['expires']			= ;
 			$data['scope']				= ;
-			$data['id_token']			= ;
 		*/
 
-		$this->db->where('id', $id);
+		$this->db->where('authorization_code', $authorization_code);
 		$database = $this->db->update('oauth_authorization_codes', $data);
 		return $database;
 	}
 
-	// Delete data in table oauth_authorization_codes by id
-	public function delete_oauth_authorization_codes_by_id ($id = '') {
-		$this->db->where('id', $id);
+	// Delete data in table oauth_authorization_codes by authorization_code
+	public function delete_oauth_authorization_codes_by_authorization_code ($authorization_code = '') {
+		$this->db->where('authorization_code', $authorization_code);
 		$database = $this->db->delete('oauth_authorization_codes');
 		return $database;
 	}
@@ -74,5 +72,21 @@ class M_oauth_authorization_codes extends CI_Model{
 	public function get_total_oauth_authorization_codes () {
 		$database = $this->db->count_all('oauth_authorization_codes');
 		return $database;
+	}
+
+	public function get_oauth_authorization_codes_by_authorization_code_client_id ($authorization_code = '', $client_id = "") {
+
+		$database = $this->db->select('*')
+					->from('oauth_authorization_codes')
+					->where('authorization_code', $authorization_code)
+					->where('client_id', $client_id)
+					->get();
+
+		if ($database->num_rows() > 0) {
+			$database = $database->result();
+			return $database[0];
+		} else {
+			return false;
+		}
 	}
 }

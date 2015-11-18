@@ -91,19 +91,19 @@ class Oauth extends CI_Controller {
 				if ($this->m_members->check_members_by_username_password($username, $password)) {
 						$logged = true;
 				} else {
-					$message = "Wrong Password";
+					$message = "Sorry, you entered an invalid password.";
 				}
 			} else {
-				$message = "Not Verified User";
+				$message = "Your Go Green Carwash account is not verified, Please verify your email first.";
 			}
 		} else {
-			$message = "User not registered";
+			$message = "Your account is not registered on Go Green Carwash.";
 		}
 
 		if ($this->m_oauth_clients->get_oauth_clients_by_client_id($client_id)) {
 			$apps_available	= true;
 		} else {
-			$message		= "Apps not registered";
+			$message		= "Your application is not registered on our server, please download from our official account.";
 		}
 
 		if ($logged && $apps_available) {

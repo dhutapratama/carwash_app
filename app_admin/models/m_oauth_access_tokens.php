@@ -10,12 +10,11 @@ class M_oauth_access_tokens extends CI_Model{
 		return $database;
 	}
 
-	// Retrieve data from table oauth_access_tokens by id
-	public function get_oauth_access_tokens_by_id ($id = '') {
-
+	// Retrieve data from table oauth_access_tokens by access_token
+	public function get_oauth_access_tokens_by_access_token ($access_token = '') {
 		$database = $this->db->select('*')
 					->from('oauth_access_tokens')
-					->where('id', $id)
+					->where('access_token', $access_token)
 					->get();
 
 		if ($database->num_rows() > 0) {
@@ -40,8 +39,8 @@ class M_oauth_access_tokens extends CI_Model{
 		return $database;
 	}
 
-	// Update data to table oauth_access_tokens by id
-	public function update_oauth_access_tokens ($id = '', $data = array()) {
+	// Update data to table oauth_access_tokens by access_token
+	public function update_oauth_access_tokens ($access_token = '', $data = array()) {
 		/*
 			$data['access_token']		= ;
 			$data['client_id']			= ;
@@ -50,14 +49,14 @@ class M_oauth_access_tokens extends CI_Model{
 			$data['scope']				= ;
 		*/
 
-		$this->db->where('id', $id);
+		$this->db->where('access_token', $access_token);
 		$database = $this->db->update('oauth_access_tokens', $data);
 		return $database;
 	}
 
-	// Delete data in table oauth_access_tokens by id
-	public function delete_oauth_access_tokens_by_id ($id = '') {
-		$this->db->where('id', $id);
+	// Delete data in table oauth_access_tokens by access_token
+	public function delete_oauth_access_tokens_by_access_token ($access_token = '') {
+		$this->db->where('access_token', $access_token);
 		$database = $this->db->delete('oauth_access_tokens');
 		return $database;
 	}
@@ -71,4 +70,6 @@ class M_oauth_access_tokens extends CI_Model{
 		$database = $this->db->count_all('oauth_access_tokens');
 		return $database;
 	}
+
+
 }

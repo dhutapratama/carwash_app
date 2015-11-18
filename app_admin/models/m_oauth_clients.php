@@ -10,12 +10,12 @@ class M_oauth_clients extends CI_Model{
 		return $database;
 	}
 
-	// Retrieve data from table oauth_clients by id
-	public function get_oauth_clients_by_id ($id = '') {
+	// Retrieve data from table oauth_clients by client_id
+	public function get_oauth_clients_by_client_id ($client_id = '') {
 
 		$database = $this->db->select('*')
 					->from('oauth_clients')
-					->where('id', $id)
+					->where('client_id', $client_id)
 					->get();
 
 		if ($database->num_rows() > 0) {
@@ -78,5 +78,22 @@ class M_oauth_clients extends CI_Model{
 	public function get_total_oauth_clients () {
 		$database = $this->db->count_all('oauth_clients');
 		return $database;
+	}
+
+	// Retrieve data from table oauth_clients by client_id
+	public function get_oauth_clients_by_client_id_client_secret ($client_id = '', $client_secret = '') {
+
+		$database = $this->db->select('*')
+					->from('oauth_clients')
+					->where('client_id', $client_id)
+					->where('client_secret', $client_secret)
+					->get();
+
+		if ($database->num_rows() > 0) {
+			$database = $database->result();
+			return $database[0];
+		} else {
+			return false;
+		}
 	}
 }

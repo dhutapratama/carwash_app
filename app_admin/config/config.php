@@ -8,13 +8,13 @@ if ($_SERVER['HTTP_HOST'] == 'carwash.app'
 
 	$config['base_url'] = 'http://carwash.app';
 	
-} elseif ($_SERVER['HTTP_HOST'] == 'americanecocarwash.com'
-	OR $_SERVER['HTTP_HOST'] == 'www.americanecocarwash.com'
-	OR $_SERVER['HTTP_HOST'] == 'api.americanecocarwash.com'
-	OR $_SERVER['HTTP_HOST'] == 'admin.americanecocarwash.com'
-	OR $_SERVER['HTTP_HOST'] == 'agen.americanecocarwash.com') {
+} elseif ($_SERVER['HTTP_HOST'] == 'gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'www.gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'api.gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'admin.gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'agen.gogreencarwash.id') {
 
-	$config['base_url'] = 'https://americanecocarwash.com';
+	$config['base_url'] = 'http://gogreencarwash.id';
 } else {
 	$config['base_url'] = 'http://localhost';
 }

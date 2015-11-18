@@ -37,3 +37,56 @@ if ( ! function_exists('detectify_verify'))
 		return $detectify_verify;
 	}
 }
+
+if ( ! function_exists('asset_url'))
+{
+	function asset_url($folder = '') {
+		$CI =& get_instance();
+		$static_url = $CI->config->item('static_url');
+		$static_url .= 'assets/';
+		$static_url .= $folder;
+
+		echo $static_url;
+
+		if($folder) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+
+if ( ! function_exists('admin_url'))
+{
+	function admin_url($folder = '') {
+		$CI =& get_instance();
+		$admin_url = $CI->config->item('admin_url');
+		$admin_url .= $folder;
+
+		echo $admin_url;
+
+		if($folder) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+
+if ( ! function_exists('admin_static'))
+{
+	function admin_static($folder = '') {
+		$CI =& get_instance();
+		$static_url = $CI->config->item('admin_url');
+		$static_url .= 'assets/';
+		$static_url .= $folder;
+
+		echo $static_url;
+
+		if($folder) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
