@@ -29,14 +29,12 @@ class M_contracts extends CI_Model{
 	// Insert data to table contracts
 	public function insert_contracts ($data = array()) {
 		/*
-			$data['name']				= ;
-			$data['location']			= ;
-			$data['city']				= ;
-			$data['longitude']			= ;
-			$data['latitude']			= ;
-			$data['user_id']			= ;
-			$data['created_at']			= ;
-			$data['updated_at']			= ;
+			$data['member_id']			= ;
+			$data['member_car_id']		= ;
+			$data['location_id']		= ;
+			$data['start_date']			= ;
+			$data['due_date']			= ;
+			$data['expired_date']		= ;
 			$data['is_expired']			= ;
 		*/
 
@@ -96,5 +94,43 @@ class M_contracts extends CI_Model{
 		} else {
 			return false;
 		}
+	}
+
+	public function get_contracts_by_member_id ($member_id = '') {
+
+		$database = $this->db->select('*')
+					->from('contracts')
+					->where('member_id', $member_id)
+					->get();
+
+		if ($database->num_rows() > 0) {
+			$database = $database->result();
+			return $database;
+		} else {
+			return false;
+		}
+	}
+
+	// Retrieve all data from table contracts
+	public function get_contracts_all_data () {
+		$database = $this->db->select('contracts.id as contract_id, contracts.*, members.*, member_cars.*, locations.*')
+					->from('contracts')
+					->join('members', 'members.id = contracts.member_id')
+					->join('member_cars', 'member_cars.id = contracts.member_car_id')
+					->join('locations', 'locations.id = contracts.location_id')
+					->get()->result();
+		return $database;
+	}
+
+	// Retrieve data from table contracts by contract_id
+	public function get_contracts_all_data_by_id ($contract_id = '') {
+		$database = $this->db->select('contracts.id as contract_id, contracts.*, members.*, member_cars.*, locations.*')
+					->from('contracts')
+					->where('contracts.id', $contract_id)
+					->join('members', 'members.id = contracts.member_id')
+					->join('member_cars', 'member_cars.id = contracts.member_car_id')
+					->join('locations', 'locations.id = contracts.location_id')
+					->get()->result();
+		return $database;
 	}
 }

@@ -32,12 +32,16 @@ class M_members extends CI_Model{
 			$data['username']			= ;
 			$data['password']			= ;
 			$data['full_name']			= ;
+			$data['address']			= ;
+			$data['location_id']		= ;
 			$data['phone']				= ;
 			$data['email']				= ;
-			$data['user_type_id']		= ;
-			$data['picture_path']		= ;
+			$data['picture_url']		= ;
+			$data['cover_url']			= ;
 			$data['oauth_scope']		= ;
 			$data['is_verified']		= ;
+			$data['referral_code']		= ;
+			$data['referring_code']		= ;
 		*/
 
 		$database = $this->db->insert('members', $data);
@@ -46,18 +50,6 @@ class M_members extends CI_Model{
 
 	// Update data to table members by id
 	public function update_members ($id = '', $data = array()) {
-		/*
-			$data['username']			= ;
-			$data['password']			= ;
-			$data['full_name']			= ;
-			$data['phone']				= ;
-			$data['email']				= ;
-			$data['user_type_id']		= ;
-			$data['picture_path']		= ;
-			$data['oauth_scope']		= ;
-			$data['is_verified']		= ;
-		*/
-
 		$this->db->where('id', $id);
 		$database = $this->db->update('members', $data);
 		return $database;

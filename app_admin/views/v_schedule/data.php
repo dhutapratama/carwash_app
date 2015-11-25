@@ -2,8 +2,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Members
-            <small>Member Data</small>
+            Schedule
+            <small>Schedule Data</small>
         </h1>
     </section>
 

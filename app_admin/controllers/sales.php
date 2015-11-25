@@ -2,7 +2,7 @@
 
 class Sales extends CI_Controller {
 	public function index () {
-		$this->_view('dashboard');
+		$this->_view('v_sales/data');
 	}
 
 	public function insert () {

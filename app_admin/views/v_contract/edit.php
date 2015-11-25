@@ -3,146 +3,71 @@
     <section class="content-header">
         <h1>
             Membership
-            <small>Create Membership</small>
+            <small>Edit Member Data</small>
         </h1>
     </section>
 
     <!-- Main content -->
     <section class="content">
+        <?php if ($error) { ?>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Success box -->
+                <div class="box box-solid bg-red">
+                    <div class="box-header">
+                        <h3 class="box-title">Your input has an error</h3>                                    
+                    </div>
+                    <div class="box-body">
+                        <ul>
+                            <?php echo $error; ?>
+                        </ul>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!-- /.col -->
+        </div>
+        <?php } ?>
+
         <div class="row">
             <!-- right column -->
             <div class="col-md-6">
                 <!-- general form elements disabled -->
-                <div class="box box-warning">
-                    <div class="box-body">
-                        <form role="form">
-                            <!-- text input -->
-                            <div class="form-group">
-                                <label>Text</label>
-                                <input type="text" class="form-control" placeholder="Enter ..."/>
-                            </div>
-                            <div class="form-group">
-                                <label>Text Disabled</label>
-                                <input type="text" class="form-control" placeholder="Enter ..." disabled/>
-                            </div>
-
-                            <!-- textarea -->
-                            <div class="form-group">
-                                <label>Textarea</label>
-                                <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Textarea Disabled</label>
-                                <textarea class="form-control" rows="3" placeholder="Enter ..." disabled></textarea>
-                            </div>
-
-                            <!-- input states -->
-                            <div class="form-group has-success">
-                                <label class="control-label" for="inputSuccess"><i class="fa fa-check"></i> Input with success</label>
-                                <input type="text" class="form-control" id="inputSuccess" placeholder="Enter ..."/>
-                            </div>
-                            <div class="form-group has-warning">
-                                <label class="control-label" for="inputWarning"><i class="fa fa-warning"></i> Input with warning</label>
-                                <input type="text" class="form-control" id="inputWarning" placeholder="Enter ..."/>
-                            </div>
-                            <div class="form-group has-error">
-                                <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> Input with error</label>
-                                <input type="text" class="form-control" id="inputError" placeholder="Enter ..."/>
-                            </div>
-
-                            <!-- checkbox -->
-                            <div class="form-group"> 
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"/>
-                                        Checkbox 1
-                                    </label>                                                
-                                </div>
-
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"/>
-                                        Checkbox 2
-                                    </label>                                                
-                                </div>
-
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" disabled/>
-                                        Checkbox disabled
-                                    </label>                                                
-                                </div>
-                            </div>
-
-                            <!-- radio -->
-                            <div class="form-group"> 
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                        Option one is this and that&mdash;be sure to include why it's great
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                        Option two can be something else and selecting it will deselect option one
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled/>
-                                        Option three is disabled
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- select -->
-                            <div class="form-group">
-                                <label>Select</label>
-                                <select class="form-control">
-                                    <option>option 1</option>
-                                    <option>option 2</option>
-                                    <option>option 3</option>
-                                    <option>option 4</option>
-                                    <option>option 5</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Select Disabled</label>
-                                <select class="form-control" disabled>
-                                    <option>option 1</option>
-                                    <option>option 2</option>
-                                    <option>option 3</option>
-                                    <option>option 4</option>
-                                    <option>option 5</option>
-                                </select>
-                            </div>
-
-                            <!-- Select multiple-->
-                            <div class="form-group">
-                                <label>Select Multiple</label>
-                                <select multiple class="form-control">
-                                    <option>option 1</option>
-                                    <option>option 2</option>
-                                    <option>option 3</option>
-                                    <option>option 4</option>
-                                    <option>option 5</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Select Multiple Disabled</label>
-                                <select multiple class="form-control" disabled>
-                                    <option>option 1</option>
-                                    <option>option 2</option>
-                                    <option>option 3</option>
-                                    <option>option 4</option>
-                                    <option>option 5</option>
-                                </select>
-                            </div>
-
-                        </form>
-                    </div><!-- /.box-body -->
-                </div><!-- /.box -->
+                <form role="form" action="<?php admin_url('member/edit/'.$member->id.'/do'); ?>" method="post">
+                    <!-- text input -->
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" class="form-control" name="username" placeholder="Type a Username" value="<?php echo $member->username; ?>" />
+                    </div>
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" class="form-control" name="full_name" placeholder="Type Full Name" value="<?php echo $member->full_name; ?>" />
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" class="form-control" name="address" placeholder="Type an Address" value="<?php echo $member->address; ?>" />
+                    </div>
+                    <div class="form-group">
+                        <label>Choose Location</label>
+                        <select class="form-control" name="location_id">
+                            <?php
+                                foreach ($locations as $key => $value) {
+                                    $selected = ($value->id == $member->location_id) ? ' selected' : '';
+                                    echo '<option value="'.$value->id.'"'.$selected.'>'.$value->name.'</option>';
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="text" class="form-control" name="phone" placeholder="Type a Phone Number" value="<?php echo $member->phone; ?>" />
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" name="email" placeholder="Type an Email" value="<?php echo $member->email; ?>" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-sm">Save</button>
+                    </div>
+                </form>
             </div><!--/.col (right) -->
         </div>   <!-- /.row -->
     </section><!-- /.content -->

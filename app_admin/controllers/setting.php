@@ -2,7 +2,7 @@
 
 class Setting extends CI_Controller {
 	public function index () {
-		$this->_view('dashboard');
+		$this->_view('v_setting/data');
 	}
 
 	public function insert () {

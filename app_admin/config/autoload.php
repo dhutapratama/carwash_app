@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 $autoload['packages'] 	= array();
-$autoload['libraries'] 	= array('database', 'session', 'encrypt', 'blacklist', 'carwash', 'oauthlib');
+$autoload['libraries'] 	= array('database', 'session', 'encrypt', 'blacklist', 'carwash', 'oauthlib', 'form_validation');
 $autoload['helper'] 	= array('url', 'carwash', 'language');
 $autoload['config'] 	= array('carwash');
 $autoload['language'] 	= array();
@@ -25,5 +25,6 @@ $autoload['model'] 		= array(
 							'm_washing_photos',
 							'm_cleaning_process',
 							'm_user_type',
-							'm_locations'
+							'm_locations',
+							'm_contract_histories'
 						);

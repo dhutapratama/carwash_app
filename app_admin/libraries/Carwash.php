@@ -6,7 +6,7 @@ class Carwash {
 	{
 		$CI =& get_instance();
 		$ip_address = $_SERVER['REMOTE_ADDR'];
-		$user_agent	='Stock N\' Bar (Analisa v1.0) http://stocknbar.com';
+		$user_agent	= 'Stock N\' Bar (Analisa v1.0) http://stocknbar.com';
 		$url 		= 'http://104.243.47.44/v3/ip-city/?format=json&key=';
 		$url 		.= $CI->config->item('apikey_ipdbinfo');
 		$url 		.= '&ip='.$ip_address;

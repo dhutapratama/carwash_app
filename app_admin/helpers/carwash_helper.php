@@ -73,6 +73,17 @@ if ( ! function_exists('admin_url'))
 	}
 }
 
+if ( ! function_exists('admin_uri'))
+{
+	function admin_uri($folder = '') {
+		$CI =& get_instance();
+		$admin_url = $CI->config->item('admin_url');
+		$admin_url .= $folder;
+
+		return $admin_url;
+	}
+}
+
 if ( ! function_exists('admin_static'))
 {
 	function admin_static($folder = '') {

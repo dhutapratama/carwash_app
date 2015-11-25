@@ -44,6 +44,19 @@
                     "bAutoWidth": false
                 });
             });
+
+            $('#custom_contract').click(function() {
+                $('#custom_form_1').toggle("slow", function () {
+                    if ($('#pricelist').val() == "true") {
+                        $('#pricelist').val("false");
+                    } else {
+                        $('#pricelist').val("true");
+                    }
+                });
+                $('#custom_form_2').toggle("slow");
+            });
+
+
         </script>
         
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
