@@ -43,7 +43,7 @@ if ($_SERVER['HTTP_HOST'] == 'carwash.app'
 			$application_folder = 'app_api';
 			break;
 
-		case 'manage.gogreencarwash.id':
+		case 'admin.gogreencarwash.id':
 			$application_folder = 'app_admin';
 			break;
 

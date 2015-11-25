@@ -19,7 +19,7 @@ if ($_SERVER['HTTP_HOST'] == 'carwash.app'
 	OR $_SERVER['HTTP_HOST'] == 'agen.gogreencarwash.id') {
 
 	$config['static_url'] = 'http://static.gogreencarwash.id/';
-	$config['admin_url'] = 'http://admin.carwash.app/';
+	$config['admin_url'] = 'http://admin.gogreencarwash.id/';
 	$config['simple_url'] = 'gogreencarwash.id';
 	$config['upload_path']= '../static/';
 } else {

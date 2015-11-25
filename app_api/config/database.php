@@ -17,7 +17,7 @@ if ($_SERVER['HTTP_HOST'] == 'carwash.app'
 } elseif ($_SERVER['HTTP_HOST'] == 'gogreencarwash.id'
 	OR $_SERVER['HTTP_HOST'] == 'www.gogreencarwash.id'
 	OR $_SERVER['HTTP_HOST'] == 'api.gogreencarwash.id'
-	OR $_SERVER['HTTP_HOST'] == 'manage.gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'admin.gogreencarwash.id'
 	OR $_SERVER['HTTP_HOST'] == 'agen.gogreencarwash.id') {
 
 	$db['default']['hostname'] = '192.168.23.16:3306';
