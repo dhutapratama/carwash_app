@@ -29,11 +29,18 @@ class M_member_cars extends CI_Model{
 	// Insert data to table member_cars
 	public function insert_member_cars ($data = array()) {
 		/*
-			$data['user_id']			= ;
+			$data['member_id']			= ;
 			$data['car_number']			= ;
+			$data['photo_url']			= ;
 			$data['color']				= ;
 			$data['brand']				= ;
 			$data['type']				= ;
+			$data['location_id']		= ;
+			$data['logitude']			= ;
+			$data['latitude']			= ;
+			$data['location_name']		= ;
+			$data['created_date']		= ;
+			$data['updated_date']		= ;
 		*/
 
 		$database = $this->db->insert('member_cars', $data);
@@ -42,14 +49,6 @@ class M_member_cars extends CI_Model{
 
 	// Update data to table member_cars by id
 	public function update_member_cars ($id = '', $data = array()) {
-		/*
-			$data['user_id']			= ;
-			$data['car_number']			= ;
-			$data['color']				= ;
-			$data['brand']				= ;
-			$data['type']				= ;
-		*/
-
 		$this->db->where('id', $id);
 		$database = $this->db->update('member_cars', $data);
 		return $database;

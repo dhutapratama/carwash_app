@@ -41,14 +41,6 @@ class M_oauth_access_tokens extends CI_Model{
 
 	// Update data to table oauth_access_tokens by access_token
 	public function update_oauth_access_tokens ($access_token = '', $data = array()) {
-		/*
-			$data['access_token']		= ;
-			$data['client_id']			= ;
-			$data['user_id']			= ;
-			$data['expires']			= ;
-			$data['scope']				= ;
-		*/
-
 		$this->db->where('access_token', $access_token);
 		$database = $this->db->update('oauth_access_tokens', $data);
 		return $database;

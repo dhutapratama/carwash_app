@@ -122,15 +122,132 @@ class User extends CI_Controller {
 						}
 					}
 				}
-				
 			} else {
 				$output['photos_before']	= false;
 				$output['photos_after']		= false;
 			}
-		}
+		} else {
+			$output['error_code']			= 404;
+			$output['message']				= "Access token not match";
 
+			$output['data'] = $output;
+			$this->load->view('parse_json', $output);
+		}
 
 		$output['data'] = $output;
 		$this->load->view('parse_json', $output);
+	}
+
+	public function add_car() {
+		$access_token 		= $this->input->get('access_token');
+		$userdata 			= $this->carwash->userdata($access_token);
+
+		if($access_token && $userdata) {
+			$member_car['member_id']		= $userdata->user_id;
+			$this->m_member_cars->insert_member_cars($member_car);
+
+			$photo_data						= $this->input->post('photo_data');
+			$member_car_id					= $this->db->insert_id();
+			$upload_path					= 'cars/' . $member_car_id . '.jpg';
+			$photo_url						= $this->config->item('static_url') . $upload_path;
+			$capture_data			 		= $this->carwash->save_base64_image(base64_decode($photo_data), $upload_path);
+
+			$member_car['photo_url']		= $photo_url;
+			$this->m_member_cars->update_member_cars($member_car_id, $member_car);
+
+			$member = $this->m_members->get_members_by_id($userdata->user_id);
+
+			$contract['member_id']			= $userdata->user_id;
+			$contract['member_car_id']		= $member_car_id;
+			$contract['location_id']		= $member->location_id;
+			$contract['start_date']			= date("Y-m-d H:i:s");
+			$contract['due_date']			= date("Y-m-d H:i:s");
+			$contract['expired_date']		= date("Y-m-d H:i:s");
+			$contract['is_expired']			= 1;
+			$this->m_contracts->insert_contracts($contract);
+
+			$output['error'] 				= false;
+			$output['member_car_id'] 		= $member_car_id;
+			$output['member_car_photo_url'] = $photo_url;
+
+			$output['data'] = $output;
+			$this->load->view('parse_json', $output);
+		} else {
+			$output['error_code']			= 404;
+			$output['message']				= "Access token not match";
+
+			$output['data'] = $output;
+			$this->load->view('parse_json', $output);
+		}
+	}
+
+	public function update_car() {
+		$access_token 		= $this->input->get('access_token');
+		$userdata 			= $this->carwash->userdata($access_token);
+
+		if($access_token && $userdata) {
+			$data['car_number']			= $this->input->post("car_number");
+			$data['color']				= $this->input->post("car_color");
+			$data['brand']				= $this->input->post("car_brand");
+			$data['type']				= $this->input->post("car_type");
+			$data['longitude']			= 0;
+			$data['latitude']			= 0;
+			$data['location_name']		= $this->input->post("location_name");
+			$data['updated_date']		= date("Y-m-d H:i:s");
+
+			$this->m_member_cars->update_member_cars($this->input->post("member_car_id"), $data);
+
+			$output['error']	= false;
+			$output['message']	= "Member car updated";
+
+			$output['data'] = $output;
+			$this->load->view('parse_json', $output);
+		} else {
+			$output['error_code']			= 404;
+			$output['message']				= "Access token not match";
+
+			$output['data'] = $output;
+			$this->load->view('parse_json', $output);
+		}
+	}
+
+	public function change_profile_image() {
+		$access_token 		= $this->input->get('access_token');
+		$userdata 			= $this->carwash->userdata($access_token);
+
+		if($access_token && $userdata) {
+			$photo_data			= $this->input->post('photo_data');
+			$hash_name			= "photo";
+			$upload_path		= 'profile_pictures/' . $hash_name . '.jpg';
+			$photo_url			= $this->config->item('static_url') . $upload_path;
+
+			$this->carwash->save_base64_image(base64_decode($photo_data), $upload_path);
+		} else {
+			$output['error_code']			= 404;
+			$output['message']				= "Access token not match";
+
+			$output['data'] = $output;
+			$this->load->view('parse_json', $output);
+		}
+	}
+
+	public function change_cover() {
+		$access_token 		= $this->input->get('access_token');
+		$userdata 			= $this->carwash->userdata($access_token);
+
+		if($access_token && $userdata) {
+			$photo_data			= $this->input->post('photo_data');
+			$washing_photo_id	= "cover";
+			$upload_path		= 'profile_pictures/' . $washing_photo_id . '.jpg';
+			$photo_url			= $this->config->item('static_url') . $upload_path;
+
+			$this->carwash->save_base64_image(base64_decode($photo_data), $upload_path);
+		} else {
+			$output['error_code']			= 404;
+			$output['message']				= "Access token not match";
+
+			$output['data'] = $output;
+			$this->load->view('parse_json', $output);
+		}
 	}
 }

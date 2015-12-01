@@ -29,14 +29,12 @@ class M_contracts extends CI_Model{
 	// Insert data to table contracts
 	public function insert_contracts ($data = array()) {
 		/*
-			$data['name']				= ;
-			$data['location']			= ;
-			$data['city']				= ;
-			$data['longitude']			= ;
-			$data['latitude']			= ;
-			$data['user_id']			= ;
-			$data['created_at']			= ;
-			$data['updated_at']			= ;
+			$data['member_id']			= ;
+			$data['member_car_id']		= ;
+			$data['location_id']		= ;
+			$data['start_date']			= ;
+			$data['due_date']			= ;
+			$data['expired_date']		= ;
 			$data['is_expired']			= ;
 		*/
 
