@@ -1,9 +1,22 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-if ($_SERVER['HTTP_HOST'] == 'stocknbar.com' OR $_SERVER['HTTP_HOST'] == 'www.stocknbar.com') {
-	$config['base_url'] = 'https://stocknbar.com';
+if ($_SERVER['HTTP_HOST'] == 'carwash.app'
+	OR $_SERVER['HTTP_HOST'] == 'www.carwash.app'
+	OR $_SERVER['HTTP_HOST'] == 'api.carwash.app'
+	OR $_SERVER['HTTP_HOST'] == 'admin.carwash.app'
+	OR $_SERVER['HTTP_HOST'] == 'agen.carwash.app') {
+
+	$config['base_url'] = 'http://carwash.app';
+	
+} elseif ($_SERVER['HTTP_HOST'] == 'gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'www.gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'api.gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'admin.gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'agen.gogreencarwash.id') {
+
+	$config['base_url'] = 'http://gogreencarwash.id';
 } else {
-	$config['base_url'] = 'http://stocknbar.app';
+	$config['base_url'] = 'http://localhost';
 }
 
 $config['index_page'] 			= '';
@@ -24,9 +37,9 @@ $config['log_threshold'] 		= 0;
 $config['log_path'] 			= '';
 $config['log_date_format'] 		= 'Y-m-d H:i:s';
 $config['cache_path'] 			= '';
-$config['encryption_key'] 		= 'lkl1ZXne0enW1OkUBVyKtqvW9pZXyp1T';
+$config['encryption_key'] 		= 'lkl1ZXne0enW1OkU-googreencarwash-BVyKtqvW9pZXyp1T';
 
-$config['sess_cookie_name']		= 'snb_key';
+$config['sess_cookie_name']		= 'ggcw_key';
 $config['sess_expiration']		= 7200;
 $config['sess_expire_on_close']	= FALSE;
 $config['sess_encrypt_cookie']	= TRUE;

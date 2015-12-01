@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Go Green Carwash</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <style>
+        @-ms-viewport { width: 100vw ; zoom: 100% ; }  @viewport { width: 100vw ; zoom: 100% ; }
+        @-ms-viewport { user-zoom: fixed ; }           @viewport { user-zoom: fixed ; }
+    </style>
+
+    <link rel="stylesheet" href="jqm/jquery.mobile-1.4.5.min.css">
+
+    <script src="cordova.js"></script>
+    <script src="jqm/jquery.min.js"></script>
+    <script src="jqm/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/flickity.pkgd.min.js"></script>
+    
+    <script src="js/app.js"></script>
+    <script src="xdk/init-dev.js"></script>
+
+    <link rel="stylesheet" href="css/flickity.css" media="screen">
+    <link rel="stylesheet" href="css/style.css">
+
+    
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+</head>
+<body>
+
+<div data-role="page" id="main-page" class="main-page">
+    <div class="gallery" data-flickity-options='{ "imagesLoaded": true }'>
+        <img src="img/slider/slide1.jpg" alt="Mobil" />
+        <img src="img/slider/slide2.jpg" alt="Keren" />
+    </div>
+
+    <div role="main" class="ui-content main-page">
+        <div class="ui-grid-c main-page-menu">
+            <div class="ui-block-a"><a href="#info-page" data-transition="slide"><img src="img/assets/main_page-menu-icons/info.png" width="80%"></a></div>
+            <div class="ui-block-b"><a href="#deposit-page" data-transition="slide"><img src="img/assets/main_page-menu-icons/price.png" width="80%"></a></div>
+            <div class="ui-block-c"><a href="#map-page" data-transition="slide"><img src="img/assets/main_page-menu-icons/location.png" width="80%"></a></div>
+            <div class="ui-block-d"><a href="#news_feed-page" data-transition="slide"><img src="img/assets/main_page-menu-icons/news.png" width="80%"></a></div>
+        </div><!-- /grid-c -->
+
+        <div class="main-sign">
+            <a class="ui-btn main-login-btn" id="main_login_btn">LOGIN</a>
+            <p class="text-center main-login-or" id="or_1" style="display:none;">OR</p>
+            <a class="ui-btn main-signup-btn" id="main_create_account_btn" style="display:none;">CREATE AN ACCOUNT</a>
+        </div>
+    </div><!-- /content -->
+</div><!-- /page -->
+
+<div data-role="page" id="login-page" style="min-height: 100% !important;" class="login-page">
+    <div role="main" class="ui-content main-login" style="height: 100% !important;">
+        <div class="main-login-form">
+            <div class="text-center main-form-logo">
+                <img src="img/acw-logo.png" width="130px">
+            </div>
+            <input data-clear-btn="true" name="login-username" data-wrapper-class="ui-login-input" id="login_username_text" value="" type="text" placeholder="Username">
+            <input data-clear-btn="true" name="login-password" data-wrapper-class="ui-login-input" id="login_password_text" value="" type="password" placeholder="Password">
+            <a class="ui-btn login-btn" id="login_login_btn">LOGIN</a>
+            <p class="text-center login-or" id="or_2" style="display:none;">OR</p>
+            <a class="ui-btn signup-btn" href="#registration-page" data-transition="slide" id="login_create_account_btn" style="display:none;">CREATE AN ACCOUNT</a>
+        </div>
+    </div><!-- /content -->
+</div><!-- /page -->
+
+<div data-role="page" id="registration-page">
+    <div role="main" class="ui-content main-login">
+        <div class="main-login-form ">
+            <div class="text-center main-form-logo">
+                <img src="img/acw-logo.png" width="130px">
+            </div>
+            <input data-wrapper-class="ui-login-input" data-clear-btn="true" id="daftar-nama" value="" type="text" placeholder="Full Name*">
+            <input data-wrapper-class="ui-login-input" data-clear-btn="true" id="daftar-email" value="" type="email" placeholder="Email*">
+            <input data-wrapper-class="ui-login-input" data-clear-btn="true" id="daftar-username" value="" type="text" placeholder="Username*">
+            <input data-wrapper-class="ui-login-input" data-clear-btn="true" id="daftar-password" value="" type="password" placeholder="Password*">
+            <input data-wrapper-class="ui-login-input" data-clear-btn="true" id="daftar-passconf" value="" type="password" placeholder="Confirm Password*">
+
+            <input data-wrapper-class="ui-login-input" data-clear-btn="true" id="daftar-passconf" value="" type="text" placeholder="Referal Code">
+            <a class="ui-btn login-btn" href="#login-panel">SIGN UP</a>
+        </div>
+    </div><!-- /content -->
+</div><!-- /page -->
+
+<div data-role="page" id="add_car-page">
+    <div role="main" class="ui-content main-login">
+        <div class="main-login-form ">
+            <div class="text-center main-form-logo">
+                <img src="img/acw-logo.png" width="150px" id="car_photo_image">
+            </div>
+            <input data-wrapper-class="ui-login-input" data-clear-btn="true" id="car_car_number" value="" type="text" placeholder="Car Number*">
+            <input data-wrapper-class="ui-login-input" data-clear-btn="true" id="car_color" value="" type="text" placeholder="Car Color*">
+            <input data-wrapper-class="ui-login-input" data-clear-btn="true" id="car_type" value="" type="text" placeholder="Car Type*">
+            <input data-wrapper-class="ui-login-input" data-clear-btn="true" id="car_brand" value="" type="text" placeholder="Brand*">
+            <input data-wrapper-class="ui-login-input" data-clear-btn="true" id="car_location_name" value="" type="text" placeholder="Location Name*">
+            <a class="ui-btn login-btn" href="#" id="save_car_data">Save</a>
+        </div>
+    </div><!-- /content -->
+</div><!-- /page -->
+
+<div data-role="page" id="news_feed-page">
+
+    <div data-role="header" class="app-header">
+        <a href="#main-page" data-role="button" data-icon="carat-l" data-iconpos="notext" data-theme="a" data-inline="true" class="all-top-menu all-header-backbtn" data-transition="slide" data-direction="reverse">Back</a>
+        <h2 class="app-header-h2"><a href="#" class="app-header-title">News Feed</a></h2>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content" id="news_content">
+        
+    </div><!-- /content -->
+</div><!-- /page -->
+
+<div data-role="page" id="info-page">
+
+    <div data-role="header" class="app-header">
+        <a href="#main-page" data-role="button" data-icon="carat-l" data-iconpos="notext" data-theme="a" data-inline="true" class="all-top-menu all-header-backbtn" data-transition="slide" data-direction="reverse">Back</a>
+        <h2 class="app-header-h2"><a href="#" class="app-header-title">Information</a></h2>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content" id="info_content">
+        
+    </div><!-- /content -->
+</div><!-- /page -->
+
+<div data-role="page" id="map-page" class="map">
+    <div data-role="header" class="app-header">
+        <a href="#main-page" data-role="button" data-icon="carat-l" data-iconpos="notext" data-theme="a" data-inline="true" class="all-top-menu all-header-backbtn" data-transition="slide" data-direction="reverse">Back</a>
+        <h2 class="app-header-h2"><a href="#" class="app-header-title">Our Locations</a></h2>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content map" id="map-canvas">
+    </div><!-- /content -->
+</div><!-- /page -->
+
+<div data-role="page" id="home-page">
+    <div data-role="header" class="app-header">
+        <h1 class="app-header-h1"><a href="#main-page" class="app-header-title">Go Green Carwash</a></h1>
+        <a href="#all-menu" data-role="button" data-icon="bullets" data-iconpos="notext" data-theme="a" data-inline="true" class="ui-btn-right all-top-menu">Menu</a>
+    </div><!-- /header -->
+
+    <a class="home-profile" href="#" id="change_cover_image">
+        <div class="home-header" id="home_header">
+            <a class="home-profile" href="#" id="change_profile_image">
+                <div class="home-profile-picture" id="home_profile_picture" style="background-image:url(img/profile_picture_default.jpg)">
+                </div>
+                <div class="home-profile-name">
+                    <div class="home-profile-name-user" id="home_full_name"></div>
+                    <div class="home-profile-name-address" id="home_address"></div>
+                    <div class="home-profile-name-carnumber" id="home_car_number"></div>
+                </div>
+            </a>
+        </div>
+    </a>
+
+    <div class="ui-grid-a home-secondary-menu text-center">
+        <div class="ui-block-a"><a class="ui-bar home-secondary-menu-item_1" href="#mycar-page" data-transition="slide">My Car</a></div>
+        <div class="ui-block-b"><a class="ui-bar home-secondary-menu-item" href="#deposit-page" data-transition="slide">Membership Price</a></div>
+    </div><!-- /grid-a -->
+
+    <div role="main" class="ui-content">
+        <div class="home-schedule">
+            <div class="home-schedule-title"><a href="#" class="hst-link">LAST CLEANING</a></div>
+            <div class="home-schedule-data">
+                <ul data-role="listview" data-inset="true" id="last_cleaning">
+                </ul>
+            </div>
+        </div>
+        <div class="home-schedule">
+            <div class="home-schedule-title"><a href="#" class="hst-link">NEXT CLEANING</a></div>
+            <div class="home-schedule-data">
+                <ul data-role="listview" data-inset="true" id="next_cleaning">
+                </ul>
+            </div>
+        </div>
+    </div><!-- /content -->
+</div><!-- /page -->
+
+<div data-role="page" id="mycar-page">
+    <div data-role="header" class="app-header">
+        <a href="#" data-rel="back" data-role="button" data-icon="carat-l" data-iconpos="notext" data-theme="a" data-inline="true" class="all-top-menu all-header-backbtn" data-transition="slide" data-direction="reverse">Back</a>
+        <h2 class="app-header-h2"><a href="#" class="app-header-title">My Cars</a></h2>
+        <a href="#all-menu" data-role="button" data-icon="bullets" data-iconpos="notext" data-theme="a" data-inline="true" class="ui-btn-right all-top-menu">Menu</a>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content">
+        <div class="home-schedule">
+            <div class="mycars-title"><a href="#" class="hst-link">MY CARS</a></div>
+            <ul data-role="listview" data-inset="true" id="mycar_list">
+
+            </ul>
+            <div align="center">
+                <a href="#" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext work_detail-add" id="add_car_btn"></a>
+                
+            </div>
+        </div>
+    </div><!-- /content -->
+</div><!-- /page -->
+
+<div data-role="page" id="deposit-page">
+    <div data-role="header" class="app-header">
+        <a href="#" data-rel="back" data-role="button" data-icon="carat-l" data-iconpos="notext" data-theme="a" data-inline="true" class="all-top-menu all-header-backbtn" data-transition="slide" data-direction="reverse">Back</a>
+        <h2 class="app-header-h2"><a href="#" class="app-header-title">Subsribe</a></h2>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content">
+        <div class="home-schedule">
+            <div class="deposit-title"><a href="#" class="hst-link">Price</a></div>
+            <div id="price_content">
+                
+            </div>
+        </div>
+    </div><!-- /content -->
+</div><!-- /page -->
+
+<div data-role="page" id="cleaning_detail-page">
+    <div data-role="header" class="app-header">
+        <a href="#" data-rel="back" data-role="button" data-icon="carat-l" data-iconpos="notext" data-theme="a" data-inline="true" class="all-top-menu all-header-backbtn" data-transition="slide" data-direction="reverse">Back</a>
+        <h2 class="app-header-h2"><a href="#" class="app-header-title">Cleaning Report</a></h2>
+        <a href="#all-menu" data-role="button" data-icon="bullets" data-iconpos="notext" data-theme="a" data-inline="true" class="ui-btn-right all-top-menu">Menu</a>
+    </div><!-- /header -->
+
+    <div class="cd-date">
+        <div role="main" class="ui-content">
+            <div class="cd-title ui-alt-icon">
+                <a href="#" class="ui-btn ui-icon-calendar ui-btn-icon-notext cd-title-logo ui-btn-inline"></a>
+                <div class="cd-title-text">Date</div>
+            </div>
+            <div class="cd-date-time">
+                <div class="cddt-time" id="cleaning_detail_time">
+                    10:15
+                </div>
+                <div class="cddt-date">
+                    <div class="cddt-date-date" id="cleaning_detail_date">
+                    10 OKT
+                    </div>
+                    <div class="cddt-date-year" id="cleaning_detail_year">
+                        2015
+                    </div>
+                </div>
+            </div>
+            <div class="cd-status" id="cleaning_detail_status">
+                Done
+            </div>
+        </div><!-- /content -->
+    </div>
+
+    <div class="cd-text">
+        BEFORE
+        <div class="cd-subtext" id="cleaning_detail_address_1"></div>
+    </div>
+
+    <div class="cd-images">
+        <ul class="cdi-list" id="cleaning_detail_photo_before">
+        </ul>
+    </div>
+
+    <div class="cd-text cd-after">
+        AFTER
+        <div class="cd-subtext" id="cleaning_detail_address_2"></div>
+    </div>
+
+    <div class="cd-images">
+        <ul class="cdi-list" id="cleaning_detail_photo_after">
+        </ul>
+    </div>
+</div><!-- /page -->
+
+<div data-role="page" id="cleaning_detail2-page">
+    <div data-role="header" class="app-header">
+        <a href="#" data-rel="back" data-role="button" data-icon="carat-l" data-iconpos="notext" data-theme="a" data-inline="true" class="all-top-menu all-header-backbtn" data-transition="slide" data-direction="reverse">Back</a>
+        <h2 class="app-header-h2"><a href="#" class="app-header-title">Cleaning Report</a></h2>
+        <a href="#all-menu" data-role="button" data-icon="bullets" data-iconpos="notext" data-theme="a" data-inline="true" class="ui-btn-right all-top-menu">Menu</a>
+    </div><!-- /header -->
+
+    <div class="cd-date">
+        <div role="main" class="ui-content">
+            <div class="cd-title ui-alt-icon">
+                <a href="#" class="ui-btn ui-icon-calendar ui-btn-icon-notext cd-title-logo ui-btn-inline"></a>
+                <div class="cd-title-text">Date</div>
+            </div>
+            <div class="cd-date-time">
+                <div class="cddt-time">
+                </div>
+                <div class="cddt-date">
+                    <div class="cddt-date-date">
+                    </div>
+                    <div class="cddt-date-year">
+                    </div>
+                </div>
+            </div>
+            <div class="cd-status2">
+                Waiting Schedule
+            </div>
+        </div><!-- /content -->
+    </div>
+
+    <div class="cd-text">
+        BEFORE
+        <div class="cd-subtext"></div>
+    </div>
+
+    <div class="cd-images">
+        <ul class="cdi-list">
+            <li><br />Not Available</li>
+        </ul>
+    </div>
+
+    <div class="cd-text cd-after">
+        AFTER
+        <div class="cd-subtext"></div>
+    </div>
+
+    <div class="cd-images">
+        <ul class="cdi-list">
+            <li><br />Not Available</li>
+        </ul>
+    </div>
+</div><!-- /page -->
+
+<div data-role="panel" id="all-menu" data-position="left" data-display="overlay" data-theme="a"  class="panel-menu">
+
+    <div class="panel-menu-header">
+        <div class="overlayer"></div>
+        <div class="panel-profile-picture" id="panel_profile_picture"></div>
+        <a href="#" class="panel-referal">
+            <div class="panel-referal-label">Referral code :</div>
+            <div class="panel-referal-code" id="panel_referral_code"></div>
+        </a>
+        <div class="panel-referal-email" id="panel_email"></div>
+    </div>
+
+    <ul data-role="listview">
+        <li data-icon="false"><a href="#main-page" data-transition="slide" class="panel-menu-item">MORE INFORMATION</a></li>
+        <!--
+        <li data-icon="false"><a href="#" data-transition="slide" class="panel-menu-item">MY CARS</a></li>
+        <li data-icon="gear"><a href="#" data-transition="slide" class="panel-menu-item">SETTINGS</a></li>
+        -->
+        <li data-icon="power"><a href="#main-page" data-transition="slide" class="panel-menu-item" id="panel_logout_menu">LOGOUT</a></li>
+    </ul>
+</div><!-- /panelmenu -->
+
+<script>
+</script>
+
+</body>
+</html>

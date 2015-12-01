@@ -14,16 +14,16 @@ if ($_SERVER['HTTP_HOST'] == 'carwash.app'
 	$db['default']['password'] = 'carwash';
 	$db['default']['database'] = 'zadmin_carwash';
 
-} elseif ($_SERVER['HTTP_HOST'] == 'americanecocarwash.app'
-	OR $_SERVER['HTTP_HOST'] == 'www.americanecocarwash.app'
-	OR $_SERVER['HTTP_HOST'] == 'api.americanecocarwash.app'
-	OR $_SERVER['HTTP_HOST'] == 'admin.americanecocarwash.app'
-	OR $_SERVER['HTTP_HOST'] == 'agen.americanecocarwash.app') {
+} elseif ($_SERVER['HTTP_HOST'] == 'gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'www.gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'api.gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'admin.gogreencarwash.id'
+	OR $_SERVER['HTTP_HOST'] == 'agen.gogreencarwash.id') {
 
-	$db['default']['hostname'] = 'localhost';
-	$db['default']['username'] = '';
-	$db['default']['password'] = '';
-	$db['default']['database'] = '';
+	$db['default']['hostname'] = '192.168.23.16:3306';
+	$db['default']['username'] = 'gogreen_carwash';
+	$db['default']['password'] = '^X5rh1v7';
+	$db['default']['database'] = 'ggcw_apps';
 } else {
 	$db['default']['hostname'] = 'localhost';
 	$db['default']['username'] = 'root';
