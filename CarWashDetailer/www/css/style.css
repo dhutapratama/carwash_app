@@ -92,8 +92,7 @@
 
 .ui-input-text input::-moz-placeholder, 
 .ui-input-search input::-moz-placeholder, 
-textarea.ui-input-text::-moz-placeholder
-{
+textarea.ui-input-text::-moz-placeholder {
     color: #33cc33;
     text-shadow: none;
     text-align: center;
@@ -101,8 +100,7 @@ textarea.ui-input-text::-moz-placeholder
 
 .ui-input-text input::-webkit-input-placeholder,
 .ui-input-search input::-webkit-input-placeholder,
-textarea.ui-input-text::-webkit-input-placeholder
-{
+textarea.ui-input-text::-webkit-input-placeholder {
     color: #33cc33;
     text-shadow: none;
     text-align: center;
@@ -110,8 +108,7 @@ textarea.ui-input-text::-webkit-input-placeholder
 
 .ui-input-text input:-moz-placeholder,
 .ui-input-search input:-moz-placeholder,
-textarea.ui-input-text:-moz-placeholder
-{
+textarea.ui-input-text:-moz-placeholder {
     color: #33cc33;
     text-shadow: none;
     text-align: center;
@@ -119,8 +116,7 @@ textarea.ui-input-text:-moz-placeholder
 
 .ui-input-text input:-ms-input-placeholder,
 .ui-input-search input:-ms-input-placeholder,
-textarea.ui-input-text:-ms-input-placeholder
-{
+textarea.ui-input-text:-ms-input-placeholder {
     color: #33cc33;
     text-shadow: none;
     text-align: center;
@@ -299,6 +295,7 @@ textarea.ui-input-text:-ms-input-placeholder
     height: 120px;
     border-bottom: solid #bbbbbb 1px;
 }
+
 .home-user_photo {
     background: #ffffff;
     background-image: url('../img/loading.gif');

@@ -43,6 +43,7 @@ var access_token    = window.localStorage.access_token;
 
 var is_logged_in    = false;
 var request_list_id = 0;
+var started         = false;
 
 function initialization () {
     if (access_token) {
@@ -290,6 +291,54 @@ function get_cardata (data) {
     }
 }
 
+function startWork() {
+    $.mobile.loading( "show" );
+    console.log(api_url + post_url + "?access_token=" + access_token);
+    post_url = "/detailer/start_working";
+    $.ajax({ type: 'POST', url: api_url + post_url + "?access_token=" + access_token, data: 
+    {
+        request_list_id: request_list_id
+    },
+
+    xhrFields: { withCredentials: true },
+    
+    success: function(data, textStatus ){
+        if(data.error == false) {
+            console.log("get work data");
+            $( "#start_work" ).html( "Finish" );
+            $( "#work_photos" ).css("display", "block");
+        } else {
+            console.log(data.message);
+        }
+        $.mobile.loading( "hide" );
+    },
+    error: function(xhr, textStatus, errorThrown){ network_error(); $.mobile.loading( "hide" );  }
+    });
+}
+
+function stopWork() {
+    $.mobile.loading( "show" );
+    console.log(api_url + post_url + "?access_token=" + access_token);
+    post_url = "/detailer/finish_working";
+    $.ajax({ type: 'POST', url: api_url + post_url + "?access_token=" + access_token, data: 
+    {
+        request_list_id: request_list_id
+    },
+
+    xhrFields: { withCredentials: true },
+    
+    success: function(data, textStatus ){
+        if(data.error == false) {
+            //alert(data.message);
+            $.mobile.changePage( "#home-page", { transition: "slide", changeHash: true });
+        } else {
+            console.log(data.message);
+        }
+        $.mobile.loading( "hide" );
+    },
+    error: function(xhr, textStatus, errorThrown){ network_error(); $.mobile.loading( "hide" );  }
+    });
+}
 
 
 // Button Action
@@ -327,6 +376,11 @@ $( document ).on( "vclick", "#worklist", function() {
     success: function(data, textStatus ){
         if(data.error == false) {
             console.log("get work data");
+            if (data.is_taken) {
+                started = true;
+            } else {
+                started = false;
+            }
             get_cardata (data);
             $.mobile.changePage( "#work_detail-page", { transition: "slide", changeHash: true });
         } else {
@@ -341,28 +395,11 @@ $( document ).on( "vclick", "#worklist", function() {
 });
 
 $( document ).on( "vclick", "#start_work", function() {
-    $.mobile.loading( "show" );
-    console.log(api_url + post_url + "?access_token=" + access_token);
-    post_url = "/detailer/start_working";
-    $.ajax({ type: 'POST', url: api_url + post_url + "?access_token=" + access_token, data: 
-    {
-        request_list_id: request_list_id
-    },
-
-    xhrFields: { withCredentials: true },
-    
-    success: function(data, textStatus ){
-        if(data.error == false) {
-            console.log("get work data");
-            $( "#start_work" ).html( "Finish" );
-            $( "#work_photos" ).css("display", "block");
-        } else {
-            console.log(data.message);
-        }
-        $.mobile.loading( "hide" );
-    },
-    error: function(xhr, textStatus, errorThrown){ network_error(); $.mobile.loading( "hide" );  }
-    });
+    if (started == false) {
+        startWork();
+    } else {
+        stopWork();
+    }
 });
 
 // Page
