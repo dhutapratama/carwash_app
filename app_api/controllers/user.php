@@ -217,11 +217,19 @@ class User extends CI_Controller {
 
 		if($access_token && $userdata) {
 			$photo_data			= $this->input->post('photo_data');
-			$hash_name			= "photo";
-			$upload_path		= 'profile_pictures/' . $hash_name . '.jpg';
+			$user_id			= $userdata->user_id;
+			$upload_path		= 'profile_pictures/' . $user_id . '.jpg';
 			$photo_url			= $this->config->item('static_url') . $upload_path;
 
 			$this->carwash->save_base64_image(base64_decode($photo_data), $upload_path);
+			$data['picture_url']		= $photo_url;
+			$this->m_members->update_members($user_id, $data);
+
+			$output['error'] 				= false;
+			$output['picture_url'] 			= $photo_url;
+
+			$output['data'] = $output;
+			$this->load->view('parse_json', $output);
 		} else {
 			$output['error_code']			= 404;
 			$output['message']				= "Access token not match";
@@ -237,11 +245,19 @@ class User extends CI_Controller {
 
 		if($access_token && $userdata) {
 			$photo_data			= $this->input->post('photo_data');
-			$washing_photo_id	= "cover";
-			$upload_path		= 'profile_pictures/' . $washing_photo_id . '.jpg';
+			$user_id			= $userdata->user_id;
+			$upload_path		= 'profile_pictures/' . $user_id . '.jpg';
 			$photo_url			= $this->config->item('static_url') . $upload_path;
 
 			$this->carwash->save_base64_image(base64_decode($photo_data), $upload_path);
+			$data['cover_url']			= $photo_url;
+			$this->m_members->update_members($user_id, $data);
+
+			$output['error'] 				= false;
+			$output['cover_url'] 			= $photo_url;
+
+			$output['data'] = $output;
+			$this->load->view('parse_json', $output);
 		} else {
 			$output['error_code']			= 404;
 			$output['message']				= "Access token not match";
